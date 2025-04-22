@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://cj21rrkd7xfxp"]
+[gd_scene load_steps=64 format=3 uid="uid://ckvt6wwjbgngq"]
 
 [ext_resource type="Texture2D" uid="uid://dna43fwe6a2iy" path="res://Assets/bg.png" id="1_h6w8y"]
 [ext_resource type="Script" uid="uid://4yj4h6jbmhw8" path="res://Scripts/player.gd" id="2_yem3p"]
@@ -289,7 +289,6 @@ scale = Vector2(1395.25, 127.067)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/WallLeft"]
 position = Vector2(0.0322335, -0.456612)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="Sprite2D" type="Sprite2D" parent="Collisions/WallLeft"]
@@ -305,7 +304,6 @@ scale = Vector2(1395.25, 127.067)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Collisions/WallsRight"]
 position = Vector2(0.0327592, -5.11558)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="Sprite2D" type="Sprite2D" parent="Collisions/WallsRight"]
@@ -320,7 +318,6 @@ scale = Vector2(1395.25, 127.067)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/Floor"]
 position = Vector2(0.127576, 0.0550891)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="Sprite2D" type="Sprite2D" parent="Collisions/Floor"]
