@@ -1,12 +1,7 @@
-[gd_scene load_steps=66 format=3 uid="uid://cj21rrkd7xfxp"]
+[gd_scene load_steps=64 format=3 uid="uid://cj21rrkd7xfxp"]
 
 [ext_resource type="Texture2D" uid="uid://dna43fwe6a2iy" path="res://Assets/bg.png" id="1_h6w8y"]
 [ext_resource type="Script" uid="uid://4yj4h6jbmhw8" path="res://Scripts/player.gd" id="2_yem3p"]
-[ext_resource type="Texture2D" uid="uid://o77u5aq5ldoo" path="res://Assets/Character/double jump/vectorman_double_jump-0.png" id="3_86rna"]
-[ext_resource type="Texture2D" uid="uid://c6pk8myhngvo0" path="res://Assets/Character/double jump/vectorman_double_jump-1.png" id="4_xg1a7"]
-[ext_resource type="Texture2D" uid="uid://bwka2e81odu4c" path="res://Assets/Character/double jump/vectorman_double_jump-2.png" id="5_ob4mi"]
-[ext_resource type="Texture2D" uid="uid://cj0yxd3fxasaf" path="res://Assets/Character/double jump/vectorman_double_jump-3.png" id="6_ax26h"]
-[ext_resource type="Texture2D" uid="uid://51jbxdi5n0o8" path="res://Assets/Character/double jump/vectorman_double_jump-4.png" id="7_kh4g0"]
 [ext_resource type="Texture2D" uid="uid://bauwjchvuiaxo" path="res://Assets/Character/double jump/vectorman_double_jump-5.png" id="8_mgmjd"]
 [ext_resource type="Texture2D" uid="uid://gri1ees5cxkm" path="res://Assets/Character/double jump/vectorman_double_jump-6.png" id="9_va2xi"]
 [ext_resource type="Texture2D" uid="uid://dm3b0f1r1hqv1" path="res://Assets/Character/double jump/vectorman_double_jump-7.png" id="10_fkf2u"]
@@ -58,8 +53,11 @@
 [ext_resource type="Texture2D" uid="uid://1kxw12y4b4ti" path="res://Assets/Character/run/vectorman_run-2.png" id="56_j6q74"]
 [ext_resource type="Texture2D" uid="uid://dyemgkhmi7i2m" path="res://Assets/Character/run/vectorman_run-4.png" id="57_hhe1y"]
 [ext_resource type="Texture2D" uid="uid://djd25v2a46eab" path="res://Assets/Character/run/vectorman_run-5.png" id="58_6jk4c"]
+[ext_resource type="Texture2D" uid="uid://dy2shlklbjh08" path="res://Assets/World/wall.png" id="58_l3lcn"]
 [ext_resource type="Texture2D" uid="uid://btf74qwampvcv" path="res://Assets/Character/run/vectorman_run-6.png" id="59_8hr8l"]
+[ext_resource type="Texture2D" uid="uid://vajt0t0sltxp" path="res://Assets/World/FLOOR.png" id="59_xry5e"]
 [ext_resource type="Texture2D" uid="uid://ci6tpgpmgm85h" path="res://Assets/Character/run/vectorman_run2-1.png" id="60_c2etn"]
+[ext_resource type="Texture2D" uid="uid://bvslhtle2lgyu" path="res://Assets/World/PLATFORM.png" id="60_h6w8y"]
 [ext_resource type="Texture2D" uid="uid://dcwky1c5q381s" path="res://Assets/Character/run/vectorman_run2-4.png" id="61_cgqxi"]
 [ext_resource type="Texture2D" uid="uid://bgddpnthgedg6" path="res://Assets/Character/run/vectorman_run2-5.png" id="62_api4a"]
 
@@ -68,21 +66,6 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_onrkg"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_86rna")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_xg1a7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_ob4mi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_ax26h")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_kh4g0")
-}, {
 "duration": 1.0,
 "texture": ExtResource("8_mgmjd")
 }, {
@@ -160,7 +143,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"double_jump",
-"speed": 16.0
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -277,8 +260,12 @@ size = Vector2(0.468924, 0.498432)
 position = Vector2(236, 104)
 texture = ExtResource("1_h6w8y")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(319, 180)
+scale = Vector2(1.54325, 0.794508)
+
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(153, 137)
+position = Vector2(-81, 138)
 script = ExtResource("2_yem3p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
@@ -290,19 +277,80 @@ shape = SubResource("CapsuleShape2D_onrkg")
 texture_filter = 1
 position = Vector2(168, 154)
 sprite_frames = SubResource("SpriteFrames_onrkg")
-animation = &"jump"
-autoplay = "run"
-frame_progress = 0.746114
+animation = &"idle"
+frame_progress = 0.976754
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(319, 180)
-scale = Vector2(1.54325, 0.794508)
+[node name="Collisions" type="Node" parent="."]
 
-[node name="Platform" type="StaticBody2D" parent="."]
+[node name="WallLeft" type="StaticBody2D" parent="Collisions"]
+position = Vector2(-34, 105)
+rotation = 1.57125
+scale = Vector2(1395.25, 127.067)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/WallLeft"]
+position = Vector2(0.0322335, -0.456612)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Collisions/WallLeft"]
+position = Vector2(0.060186, -0.441011)
+rotation = 1.56885
+scale = Vector2(-0.0210693, 0.00199718)
+texture = ExtResource("58_l3lcn")
+
+[node name="WallsRight" type="StaticBody2D" parent="Collisions"]
+position = Vector2(-34, 105)
+rotation = 1.57125
+scale = Vector2(1395.25, 127.067)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Collisions/WallsRight"]
+position = Vector2(0.0327592, -5.11558)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Collisions/WallsRight"]
+position = Vector2(0.0621452, -5.09999)
+rotation = 1.56828
+scale = Vector2(0.0212781, -0.00193798)
+texture = ExtResource("58_l3lcn")
+
+[node name="Floor" type="StaticBody2D" parent="Collisions"]
 position = Vector2(139, 342)
 scale = Vector2(1395.25, 127.067)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/Floor"]
 position = Vector2(0.127576, 0.0550891)
 scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Collisions/Floor"]
+position = Vector2(0.129013, 0.0629578)
+scale = Vector2(0.000940935, 0.00965925)
+texture = ExtResource("59_xry5e")
+
+[node name="PlatformBig" type="StaticBody2D" parent="Collisions"]
+position = Vector2(253, 234)
+scale = Vector2(420.85, 64.0316)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/PlatformBig"]
+position = Vector2(-2.02563e-08, -3.83705e-07)
+scale = Vector2(0.547299, 0.799576)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Collisions/PlatformBig"]
+scale = Vector2(0.00141072, 0.0109904)
+texture = ExtResource("60_h6w8y")
+
+[node name="PlatformSmall" type="StaticBody2D" parent="Collisions"]
+position = Vector2(199, 213)
+scale = Vector2(523.392, 67.6054)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/PlatformSmall"]
+position = Vector2(0.643877, -1.52355)
+scale = Vector2(0.368897, -0.798748)
+shape = SubResource("RectangleShape2D_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="Collisions/PlatformSmall"]
+position = Vector2(0.647583, -1.52354)
+scale = Vector2(0.000946093, 0.0109904)
+texture = ExtResource("60_h6w8y")
